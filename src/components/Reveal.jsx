@@ -15,10 +15,10 @@ export function useInView(options = { threshold: 0.15 }) {
   return [ref, inView]
 }
 
-export default function Reveal({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
+export default function Reveal({ as: Tag = 'div', delay = 0, className = '', style, children, ...rest }) {
   const [ref, inView] = useInView()
   return (
-    <Tag ref={ref} className={`reveal ${inView ? 'in' : ''} ${className}`} style={{ transitionDelay: `${delay}ms` }} {...rest}>
+    <Tag ref={ref} className={`reveal ${inView ? 'in' : ''} ${className}`} style={{ ...style, transitionDelay: `${delay}ms` }} {...rest}>
       {children}
     </Tag>
   )

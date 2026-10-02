@@ -1,69 +1,87 @@
+import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import { Leaf } from '../components/Logo.jsx'
-import { PageHero, SectionHead } from '../components/Shared.jsx'
-import { timeline } from '../data.js'
+import { PageHero, SectionHead, QuoteCTA } from '../components/Shared.jsx'
+import { img, team, reasons } from '../data.js'
 
-const values = [
-  { title: 'Heritage', text: 'We honour the traditions and craftsmanship passed down through generations of tobacco masters.' },
-  { title: 'Excellence', text: 'From leaf selection to final pack, we accept nothing less than exceptional quality.' },
-  { title: 'Integrity', text: 'We operate with honesty and transparency with every partner, grower and regulator.' },
-  { title: 'Innovation', text: 'We invest in modern technology to refine our craft while preserving its soul.' },
-]
+function initials(name) {
+  return name.split(' ').map((w) => w[0]).join('').slice(0, 2)
+}
 
 export default function About() {
   return (
     <>
-      <PageHero eyebrow="Our Heritage" title="A Legacy Written in Leaf" text="Three decades of passion, patience and an uncompromising pursuit of the perfect blend." />
+      <PageHero eyebrow="About Us" title="Rooted in Pakistan, trusted worldwide" text="A Pakistan-based tobacco export company delivering carefully sourced, quality-controlled raw tobacco to international manufacturers and distributors." image="tbc 4.jpg" />
 
-      <section className="section section--cream">
-        <div className="container intro">
-          <Reveal className="intro__text">
-            <p className="eyebrow">Our Story</p>
-            <h2 className="display">Where tradition meets <em>modern mastery.</em></h2>
-            <p>Sultan House began as a family leaf-trading business with a simple belief: that exceptional tobacco begins long before it reaches the factory — in the soil, in the sun, and in the hands of those who grow it.</p>
-            <p>That belief still guides us. Today we combine time-honoured curing and blending techniques with state-of-the-art manufacturing, delivering consistent quality to adult consumers around the world.</p>
-          </Reveal>
-          <Reveal className="intro__art" delay={150}>
-            <div className="intro__frame">
-              <div className="intro__frame-inner">
-                <Leaf size={160} />
-                <p className="intro__est">SINCE</p>
-                <p className="intro__year">1990</p>
-              </div>
+      <section className="section section--cream contours">
+        <div className="container story">
+          <Reveal className="story__media">
+            <img src={img('tbc 2.jpg')} alt="Cured tobacco leaves" loading="lazy" />
+            <div className="story__card">
+              <Leaf size={30} />
+              <p>Pure leaf.<br />Pure trust.</p>
             </div>
           </Reveal>
+          <Reveal className="story__text" delay={150}>
+            <p className="eyebrow">Our Story</p>
+            <h2 className="display">Years of experience in <em>global tobacco trade</em></h2>
+            <p>For many years, Sultan House (Private) Limited has connected Pakistan's finest tobacco-growing regions with manufacturers across the world. What began with a deep understanding of the leaf has grown into a complete export operation serving buyers on every continent.</p>
+            <p>We export pure leaf tobacco and all kinds of raw materials used in tobacco manufacturing — from Virginia flue-cured and Burley to sun-cured Rustica, shredded tobacco and expanded stem. Every consignment is sourced from trusted growers, graded with care and prepared to each buyer's exact specification.</p>
+            <p>Our operations are guided by strict quality control, responsible sourcing practices and a strong understanding of global trade requirements.</p>
+          </Reveal>
         </div>
       </section>
 
-      <section className="section section--dark">
+      <section className="section section--green">
         <div className="container">
-          <SectionHead light eyebrow="Milestones" title="Our Journey" />
-          <div className="timeline">
-            {timeline.map((t, i) => (
-              <Reveal key={t.year} className="timeline__item" delay={i * 100}>
-                <span className="timeline__year">{t.year}</span>
-                <span className="timeline__dot" />
-                <p>{t.text}</p>
+          <SectionHead light eyebrow="Our Values" title="What sets us apart" />
+          <div className="reasons reasons--dark">
+            {reasons.map((r, i) => (
+              <Reveal key={r.title} className="reason" delay={i * 100}>
+                <span className="reason__num">0{i + 1}</span>
+                <h3>{r.title}</h3>
+                <p>{r.text}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section section--cream2">
+      <section className="section section--cream" id="team">
         <div className="container">
-          <SectionHead eyebrow="What Guides Us" title="Our Values" />
-          <div className="values">
-            {values.map((v, i) => (
-              <Reveal key={v.title} className="value" delay={i * 100}>
-                <span className="craft__num">0{i + 1}</span>
-                <h3>{v.title}</h3>
-                <p>{v.text}</p>
+          <SectionHead eyebrow="Our Team" title="The people behind Sultan House" text="Experienced professionals in sourcing, quality, operations and international trade — dedicated to every buyer we serve." />
+          <div className="team">
+            {team.map((m, i) => (
+              <Reveal key={m.name} className="member" delay={(i % 3) * 100}>
+                <div className="member__photo">
+                  {m.photo ? <img src={img(m.photo)} alt={m.name} loading="lazy" /> : <span>{initials(m.name)}</span>}
+                </div>
+                <h3>{m.name}</h3>
+                <p className="member__role">{m.role}</p>
+                <a href={`mailto:${m.email}`}>{m.email}</a>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <section className="panel-wrap">
+        <div className="container two-panels">
+          <Reveal className="panel panel--sage">
+            <p className="eyebrow">Affiliations & Certifications</p>
+            <h3 className="display display--sm">Compliant, inspected, reliable.</h3>
+            <p>Our operations align with applicable export regulations and industry quality standards. We work closely with regulatory bodies, inspection agencies and logistics partners to ensure compliant and reliable shipments.</p>
+          </Reveal>
+          <Reveal className="panel panel--deep" delay={150}>
+            <p className="eyebrow eyebrow--light">Join Our Team</p>
+            <h3 className="display display--sm display--light">Grow with us.</h3>
+            <p>We are always looking for passionate people who take pride in their work and value a family dynamic and dedication to customer service. We invest in our team with the same passion they bring every day.</p>
+            <Link to="/contact" className="btn btn--cream">Apply Now</Link>
+          </Reveal>
+        </div>
+      </section>
+
+      <QuoteCTA />
     </>
   )
 }

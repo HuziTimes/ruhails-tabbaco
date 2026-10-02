@@ -1,51 +1,58 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import { PageHero } from '../components/Shared.jsx'
+import { company, products } from '../data.js'
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
+  const [params] = useSearchParams()
+  const preset = params.get('product') || ''
 
   return (
     <>
-      <PageHero eyebrow="Get in Touch" title="Contact Sultan House" text="For distribution enquiries, partnerships or general questions, our team will be delighted to assist." />
-      <section className="section section--cream">
+      <PageHero eyebrow="Get a Quote" title="Let's work together" text="Our team is here to provide transparent pricing and expert guidance. Tell us your requirements and we'll prepare a quote tailored to you." image="tbc 4.jpg" />
+      <section className="section section--cream contours">
         <div className="container contact">
           <Reveal className="contact__info">
             <p className="eyebrow">Head Office</p>
-            <h2 className="display">Let's start a conversation.</h2>
-            <div className="contact__item"><h4>Address</h4><p>Sultan House Head Office<br />Street Address, City, Country</p></div>
-            <div className="contact__item"><h4>Phone</h4><p><a href="tel:+000000000">+00 000 000 000</a></p></div>
-            <div className="contact__item"><h4>Email</h4><p><a href="mailto:info@yourdomain.com">info@yourdomain.com</a></p></div>
-            <div className="contact__item"><h4>Hours</h4><p>Monday – Friday, 9:00 – 18:00</p></div>
+            <h2 className="display">Sultan House <em>Islamabad</em></h2>
+            <div className="contact__item"><h4>Address</h4><p>{company.name}<br />{company.address.join(', ')}</p></div>
+            <div className="contact__item"><h4>Phone / WhatsApp</h4><p><a href={company.phoneHref}>{company.phone}</a></p></div>
+            {company.emails.map((e) => (
+              <div className="contact__item" key={e.value}><h4>{e.label}</h4><p><a href={`mailto:${e.value}`}>{e.value}</a></p></div>
+            ))}
           </Reveal>
           <Reveal className="contact__form-wrap" delay={150}>
             {sent ? (
               <div className="contact__thanks">
                 <h3 className="display">Thank you.</h3>
-                <p>Your message has been received. A member of our team will be in touch shortly.</p>
+                <p>Your enquiry has been received. Our export team will be in touch shortly.</p>
               </div>
             ) : (
               <form className="form" onSubmit={(e) => { e.preventDefault(); setSent(true) }}>
+                <h3 className="form__title">Request a quotation</h3>
                 <div className="form__row">
                   <label>Full Name<input required name="name" /></label>
-                  <label>Company<input name="company" /></label>
+                  <label>Company<input required name="company" /></label>
                 </div>
                 <div className="form__row">
                   <label>Email<input required type="email" name="email" /></label>
-                  <label>Country<input name="country" /></label>
+                  <label>Phone<input type="tel" name="phone" /></label>
                 </div>
-                <label>Enquiry Type
-                  <select name="type" defaultValue="Distribution">
-                    <option>Distribution</option>
-                    <option>Partnership</option>
-                    <option>Media</option>
-                    <option>Careers</option>
-                    <option>General</option>
-                  </select>
-                </label>
-                <label>Message<textarea required rows="5" name="message" /></label>
-                <label className="form__check"><input type="checkbox" required /> I confirm I am of legal smoking age.</label>
-                <button className="btn btn--gold" type="submit">Send Message</button>
+                <div className="form__row">
+                  <label>Product
+                    <select name="product" defaultValue={preset}>
+                      <option value="">Select a product</option>
+                      {products.map((p) => <option key={p.name}>{p.name}</option>)}
+                      <option>Other raw material</option>
+                    </select>
+                  </label>
+                  <label>Quantity (kg / containers)<input name="quantity" /></label>
+                </div>
+                <label>Destination Country / Port<input name="destination" /></label>
+                <label>Specifications & Message<textarea required rows="4" name="message" placeholder="Grade, cut, moisture, packing, delivery timeline…" /></label>
+                <button className="btn btn--green" type="submit">Send Enquiry</button>
               </form>
             )}
           </Reveal>

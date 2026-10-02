@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import { Leaf, Ornament } from './Logo.jsx'
 import Reveal from './Reveal.jsx'
+import { img } from '../data.js'
 
 export function SectionHead({ eyebrow, title, text, light = false, align = 'center' }) {
   return (
@@ -12,34 +14,53 @@ export function SectionHead({ eyebrow, title, text, light = false, align = 'cent
   )
 }
 
-export function PageHero({ eyebrow, title, text }) {
+export function PageHero({ eyebrow, title, text, image = 'tbc 2.jpg' }) {
   return (
-    <section className="page-hero">
-      <div className="page-hero__glow" />
-      <Leaf size={420} outline className="page-hero__leaf" />
-      <div className="container page-hero__inner">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 className="display display--xl">{title}</h1>
-        <Ornament />
-        {text && <p className="lead lead--light">{text}</p>}
+    <section className="page-hero-wrap">
+      <div className="page-hero" style={{ '--bg': `url("${img(image)}")` }}>
+        <Leaf size={380} outline className="page-hero__leaf" />
+        <div className="page-hero__inner">
+          <p className="eyebrow eyebrow--light">{eyebrow}</p>
+          <h1 className="display display--xl">{title}</h1>
+          <Ornament />
+          {text && <p className="lead lead--light">{text}</p>}
+        </div>
       </div>
     </section>
   )
 }
 
-export function Pack({ brand }) {
-  const [a, b] = brand.tone
+export function ProductCard({ product, delay = 0 }) {
   return (
-    <div className={`pack ${brand.light ? 'pack--light' : ''}`} style={{ '--p1': a, '--p2': b, '--pa': brand.accent }}>
-      <div className="pack__lid" />
-      <div className="pack__frame">
-        <Leaf size={30} />
-        <span className="pack__house">Sultan House</span>
-        <span className="pack__name">{brand.name}</span>
-        <span className="pack__rule" />
-        <span className="pack__line">{brand.line}</span>
+    <Reveal as="article" className="product" delay={delay}>
+      <div className="product__media">
+        <img src={img(product.image)} alt={product.name} loading="lazy" />
+        <span className="product__tag">{product.tag}</span>
       </div>
-      <div className="pack__shine" />
-    </div>
+      <div className="product__body">
+        <h3>{product.name}</h3>
+        <p>{product.text}</p>
+        <Link to={`/contact?product=${encodeURIComponent(product.name)}`} className="link-arrow">Get a quote <span>→</span></Link>
+      </div>
+    </Reveal>
+  )
+}
+
+export function QuoteCTA() {
+  return (
+    <section className="cta-wrap">
+      <div className="container">
+        <Reveal className="cta" style={{ '--bg': `url("${img('pexels hero.jpg')}")` }}>
+          <Leaf size={54} />
+          <p className="eyebrow eyebrow--light">Let's work together</p>
+          <h2 className="display display--light">Looking for a reliable tobacco supplier?</h2>
+          <p className="lead lead--light">Our export team provides transparent pricing, samples and expert guidance tailored to your exact specifications.</p>
+          <div className="cta__actions">
+            <Link to="/contact" className="btn btn--gold">Request a Quote</Link>
+            <Link to="/products" className="btn btn--ghost">Browse Products</Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
   )
 }

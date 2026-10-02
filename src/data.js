@@ -1,44 +1,71 @@
-// Placeholder content — replace brand names, figures and copy with your own.
+// Images are served from the current sultanhouse.co site.
+// To self-host, copy them into /public/images and change IMG to '/images/'.
+const IMG = 'https://sultanhouse.co/assets/images/'
+export const img = (name) => IMG + encodeURIComponent(name)
 
-export const brands = [
-  { name: 'Sultan Royal', line: 'Signature King Size', category: 'Cigarettes', tone: ['#5a1420', '#2a070d'], accent: '#E8C980', note: 'Full-bodied Virginia blend with a warm, honeyed finish.' },
-  { name: 'Sultan Gold', line: 'Smooth Selection', category: 'Cigarettes', tone: ['#1b1712', '#0d0b08'], accent: '#E8C980', note: 'Our golden standard — balanced, refined and smooth.' },
-  { name: 'Imperial Leaf', line: 'Superslims', category: 'Slims', tone: ['#f3ede2', '#d9cfbd'], accent: '#A9782C', light: true, note: 'Elegant superslim format with a delicate aroma.' },
-  { name: 'Ottoman Reserve', line: 'Limited Edition', category: 'Premium', tone: ['#0f2a22', '#06140f'], accent: '#E8C980', note: 'Aged Oriental leaf, hand-selected from single estates.' },
-  { name: 'Velvet Blend', line: 'Fine Cut', category: 'Fine Cut', tone: ['#2b1d3a', '#140c1d'], accent: '#E8C980', note: 'Slow-cured fine cut tobacco for the true roller.' },
-  { name: 'Sultan Blue', line: 'Compact', category: 'Cigarettes', tone: ['#10233f', '#081325'], accent: '#E8C980', note: 'A lighter, crisp blend in a modern compact pack.' },
+export const company = {
+  name: 'Sultan House (Private) Limited',
+  address: ['F-10/3, Street 1', 'Islamabad 44000, Pakistan'],
+  phone: '+92 317 0333084',
+  phoneHref: 'tel:+923170333084',
+  emails: [
+    { label: 'General Info', value: 'info@sultanhouse.co' },
+    { label: 'Exports', value: 'ruhail@sultanhouse.co' },
+    { label: 'Operations', value: 'zeeshan@sultanhouse.co' },
+    { label: 'Logistics', value: 'logistics@sultanhouse.co' },
+  ],
+  facebook: 'https://www.facebook.com/profile.php?id=61584136835557',
+  linkedin: 'https://www.linkedin.com/in/sultan-house-tobacco-company-2a356439a/',
+}
+
+export const products = [
+  { name: 'Virginia Flue-Cured (FCV)', tag: 'Bright Tobacco', image: 'FLUE CURED VIRGINIA TOBACCO.jpg', text: 'High-quality flue-cured leaf known for its bright golden colour, mild flavour and outstanding consistency.' },
+  { name: 'Burley Tobacco', tag: 'Light Air-Cured', image: 'LIGHT AIR CURED TOBACCO (BURLEY).jpg', text: 'Light air-cured tobacco prized in cigarette blends for its excellent absorptive qualities and body.' },
+  { name: 'Sun-Cured Rustica', tag: 'Traditional Cure', image: 'SUN-CURED RUSTICA TOBACCO (CHELUM TOBACCO, MULKI TOBACCO, SNUFF TOBACCO).jpg', text: 'Naturally sun-cured Rustica — Chelum, Mulki and Snuff tobacco with distinct aroma and regional character.' },
+  { name: 'Dark Air-Cured Tobacco', tag: 'Air-Cured', image: 'DARK AIR-CURED TOBACCO.jpg', text: 'Robust dark air-cured leaf, cleaned and graded as strips or whole leaves ready for export.' },
+  { name: 'Light Sun-Cured Tobacco', tag: 'Desi Hukkah', image: 'LIGHT SUN-CURED TOBACCO (DESIHUKKAH TOBACCO).jpg', text: 'Light sun-cured Desi Hukkah tobacco, prepared to customer-defined specifications and blends.' },
+  { name: 'Shredded Tobacco', tag: 'Processed Raw Material', image: 'SHREDDED TOBACCO.jpg', text: 'Precisely cut and conditioned tobacco, supplied to your required cut width, moisture and blend.' },
+  { name: 'Expanded Stem', tag: 'Processed Raw Material', image: 'EXPANDED STEM.jpg', text: 'Expanded tobacco stem for filling-value improvement and cost-efficient cigarette manufacturing.' },
+  { name: 'Custom Buyer Grades', tag: 'Buyer-Specific', image: 'tbc 4.jpg', text: 'Any grade, blend or raw material prepared exactly to your specification — cut, moisture, cleanliness and packing.' },
 ]
 
-export const stats = [
-  { value: 35, suffix: '+', label: 'Years of Heritage' },
-  { value: 40, suffix: '+', label: 'Export Markets' },
-  { value: 12, suffix: '', label: 'Signature Blends' },
-  { value: 2500, suffix: '+', label: 'Partner Growers' },
+export const services = [
+  { title: 'Raw Tobacco Sourcing', text: 'Direct relationships with trusted growers across Pakistan’s finest tobacco regions.' },
+  { title: 'Quality Control & Grading', text: 'Rigorous grading, inspection and pre-shipment checks on every consignment.' },
+  { title: 'Processing Coordination', text: 'Threshing, cutting, conditioning and packing to buyer-specific requirements.' },
+  { title: 'Export & Logistics', text: 'Complete export documentation, freight and door-to-port delivery worldwide.' },
 ]
 
-export const process = [
-  { title: 'Cultivation', text: 'Seeds are nurtured on sun-drenched estates by growers who have tended the soil for generations.' },
-  { title: 'Curing', text: 'Each harvest is patiently flue- and air-cured to unlock its natural sweetness and golden hue.' },
-  { title: 'Blending', text: 'Our master blenders marry Virginia, Burley and Oriental leaf into balanced, signature profiles.' },
-  { title: 'Crafting', text: 'State-of-the-art production meets uncompromising quality checks at every single stage.' },
+export const reasons = [
+  { title: 'Consistent Quality', text: 'Uniform tobacco quality through careful sourcing, grading and supplier coordination.' },
+  { title: 'Years of Export Experience', text: 'We understand international trade requirements, documentation and destination-specific standards.' },
+  { title: 'Reliable Supply Chain', text: 'Long-term grower relationships let us meet volume commitments and delivery timelines.' },
+  { title: 'Worldwide Support', text: 'A dedicated team supporting buyers across every time zone, from first sample to final delivery.' },
 ]
 
-export const pillars = [
-  { title: 'Empowering Growers', text: 'Fair contracts, agronomy training and long-term partnerships that uplift farming communities.' },
-  { title: 'Protecting Nature', text: 'Reforestation, efficient curing barns and water stewardship across our leaf-growing regions.' },
-  { title: 'Responsible Business', text: 'Strict adult-only marketing, full regulatory compliance and transparent governance.' },
+export const steps = [
+  { title: 'Enquiry & Specification', text: 'Share your grade, cut, moisture, packing and volume requirements with our export team.' },
+  { title: 'Samples & Quotation', text: 'We provide representative samples and a transparent, competitive quotation.' },
+  { title: 'Sourcing & Processing', text: 'Leaf is sourced, graded and processed to your exact specification.' },
+  { title: 'Inspection', text: 'Independent and in-house pre-shipment quality checks and certification.' },
+  { title: 'Shipment & Delivery', text: 'Full export documentation, fumigation and secure container shipment worldwide.' },
 ]
 
-export const news = [
-  { date: 'September 2026', tag: 'Company', title: 'Sultan House expands into new Gulf and African markets' },
-  { date: 'August 2026', tag: 'Sustainability', title: '500,000 trees planted across our partner growing regions' },
-  { date: 'June 2026', tag: 'Products', title: 'Introducing Ottoman Reserve — a limited edition blend' },
+export const regions = ['Middle East', 'Asia Pacific', 'Africa', 'Europe', 'Central Asia', 'Americas']
+
+export const team = [
+  { name: 'Behram Yusuf', role: 'Chief Executive Officer', email: 'behram@sultanhouse.co', photo: 'behramhd.png' },
+  { name: 'Zeeshan Akhtar', role: 'Director — Operations', email: 'zeeshan@sultanhouse.co', photo: 'zeeshan.jpg' },
+  { name: 'Ruhail Akhtar', role: 'Director — Sales & Marketing', email: 'ruhail@sultanhouse.co', photo: 'ruhailgem.png' },
+  { name: 'Akhtar Khan', role: 'Procurement & Sourcing Lead', email: 'akhtar@sultanhouse.co' },
+  { name: 'Sohail Ahmed', role: 'Quality Controller', email: 'sohail@sultanhouse.co' },
+  { name: 'Sheraz Khan', role: 'Export Manager', email: 'sheraz@sultanhouse.co' },
 ]
 
-export const timeline = [
-  { year: '1990', text: 'Sultan House is founded as a family leaf-trading business.' },
-  { year: '2002', text: 'Our first manufacturing facility opens, launching Sultan Royal.' },
-  { year: '2011', text: 'Exports begin across the Middle East and Central Asia.' },
-  { year: '2019', text: 'A new state-of-the-art plant doubles production capacity.' },
-  { year: '2026', text: 'Present in 40+ markets with a portfolio of signature blends.' },
+export const faqs = [
+  { q: 'What types of tobacco do you export?', a: 'We export Virginia flue-cured, Burley, sun-cured, dark air-cured, shredded tobacco, expanded stem and buyer-specified grades — along with other tobacco raw materials used in manufacturing.' },
+  { q: 'Do you supply customised grades?', a: 'Yes. Tobacco is prepared according to customer specifications, including cut, moisture, cleanliness, blend and packaging.' },
+  { q: 'Which markets do you serve?', a: 'We supply manufacturers, processors and distributors worldwide, including Asia, the Middle East, Africa and beyond.' },
+  { q: 'How do you ensure quality?', a: 'Through careful sourcing, grading, inspection and pre-shipment quality checks on every consignment.' },
+  { q: 'Can I request samples before ordering?', a: 'Absolutely. Contact our export team with your requirements and we will arrange representative samples.' },
 ]
