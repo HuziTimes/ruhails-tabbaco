@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
-import { PageHero } from '../components/Shared.jsx'
 import { company, products } from '../data.js'
 
 export default function Contact() {
@@ -10,28 +9,30 @@ export default function Contact() {
   const preset = params.get('product') || ''
 
   return (
-    <>
-      <PageHero eyebrow="Get a Quote" title="Let's work together" text="Our team is here to provide transparent pricing and expert guidance. Tell us your requirements and we'll prepare a quote tailored to you." image="tbc 4.jpg" />
-      <section className="section section--cream contours">
-        <div className="container contact">
+    <section className="contact">
+      <div className="wrap">
+        <div className="phero__head">
+          <p className="label">Get a Quote</p>
+          <h1 className="h-hero">Let's work together</h1>
+          <div className="phero__meta"><p>Our team is here to provide transparent pricing and expert guidance. Tell us your requirements and we'll prepare a quote tailored to you.</p></div>
+        </div>
+
+        <div className="contact__grid">
           <Reveal className="contact__info">
-            <p className="eyebrow">Head Office</p>
-            <h2 className="display">Sultan House <em>Islamabad</em></h2>
-            <div className="contact__item"><h4>Address</h4><p>{company.name}<br />{company.address.join(', ')}</p></div>
+            <div className="contact__item"><h4>Head Office</h4><p>{company.name}<br />{company.address.join(', ')}</p></div>
             <div className="contact__item"><h4>Phone / WhatsApp</h4><p><a href={company.phoneHref}>{company.phone}</a></p></div>
             {company.emails.map((e) => (
-              <div className="contact__item" key={e.value}><h4>{e.label}</h4><p><a href={`mailto:${e.value}`}>{e.value}</a></p></div>
+              <div className="contact__item" key={e.value}><h4>{e.label}</h4><p><a href={`mailto:${e.value}`}>{e.value} ↗</a></p></div>
             ))}
           </Reveal>
-          <Reveal className="contact__form-wrap" delay={150}>
+          <Reveal className="contact__form" delay={120}>
             {sent ? (
               <div className="contact__thanks">
-                <h3 className="display">Thank you.</h3>
+                <h3 className="h-lg">Thank you.</h3>
                 <p>Your enquiry has been received. Our export team will be in touch shortly.</p>
               </div>
             ) : (
               <form className="form" onSubmit={(e) => { e.preventDefault(); setSent(true) }}>
-                <h3 className="form__title">Request a quotation</h3>
                 <div className="form__row">
                   <label>Full Name<input required name="name" /></label>
                   <label>Company<input required name="company" /></label>
@@ -48,16 +49,16 @@ export default function Contact() {
                       <option>Other raw material</option>
                     </select>
                   </label>
-                  <label>Quantity (kg / containers)<input name="quantity" /></label>
+                  <label>Quantity<input name="quantity" placeholder="kg / containers" /></label>
                 </div>
                 <label>Destination Country / Port<input name="destination" /></label>
-                <label>Specifications & Message<textarea required rows="4" name="message" placeholder="Grade, cut, moisture, packing, delivery timeline…" /></label>
-                <button className="btn btn--green" type="submit">Send Enquiry</button>
+                <label>Specifications & Message<textarea required rows="4" name="message" placeholder="Grade, cut, moisture, packing, timeline…" /></label>
+                <button className="btn btn--dark" type="submit">Send Enquiry ↗</button>
               </form>
             )}
           </Reveal>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }
